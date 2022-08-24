@@ -566,6 +566,30 @@ func packagistHookParams(ctx *context.Context) webhookParams {
 	}
 }
 
+// SynologyChatHooksNewPost response for creating SynologyChat webhook
+func SynologyChatHooksNewPost(ctx *context.Context) {
+	createWebhook(ctx, packagistHookParams(ctx))
+}
+
+// SynologyChatHooksEditPost response for editing SynologyChat webhook
+func SynologyChatHooksEditPost(ctx *context.Context) {
+	editWebhook(ctx, packagistHookParams(ctx))
+}
+
+func synologychatHookParams(ctx *context.Context) webhookParams {
+	form := web.GetForm(ctx).(*forms.NewSynologyChatHookForm)
+
+	return webhookParams{
+		Type:        webhook.SYNOLOGYCHAT,
+		URL:         form.SynologyChatURL,
+		ContentType: webhook.ContentTypeJSON,
+		WebhookForm: form.WebhookForm,
+		Meta: &webhook_service.SynologyChatMeta{
+			SynologyChatURL: form.SynologyChatURL,
+		},
+	}
+}
+
 func checkWebhook(ctx *context.Context) (*orgRepoCtx, *webhook.Webhook) {
 	orCtx, err := getOrgRepoCtx(ctx)
 	if err != nil {
@@ -603,6 +627,8 @@ func checkWebhook(ctx *context.Context) (*orgRepoCtx, *webhook.Webhook) {
 		ctx.Data["MatrixHook"] = webhook_service.GetMatrixHook(w)
 	case webhook.PACKAGIST:
 		ctx.Data["PackagistHook"] = webhook_service.GetPackagistHook(w)
+	case webhook.SYNOLOGYCHAT:
+		ctx.Data["SynologyChatHook"] = webhook_service.GetSynologyChatHook(w)
 	}
 
 	ctx.Data["History"], err = w.History(1)

@@ -1,0 +1,11 @@
+{{if eq .HookType "synologychat"}}
+	<p>{{.locale.Tr "repo.settings.add_web_hook_desc" "https://kb.synology.com/DSM/tutorial/How_to_configure_webhooks_and_slash_commands_in_Chat_Integration" (.locale.Tr "repo.settings.web_hook_name_synologychat") | Str2html}}</p>
+	<form class="ui form" action="{{.BaseLink}}/synologychat/{{or .Webhook.ID "new"}}" method="post">
+		{{.CsrfTokenHtml}}
+		<div class="required field {{if .Err_SynologyChatURL}}error{{end}}">
+			<label for="synologychat_url">{{.locale.Tr "repo.settings.synologychat_webhook_url"}}</label>
+			<input id="synologychat_url" name="synologychat_url" value="{{.SynologyChatHook.SynologyChatURL}}" placeholder="e.g. https://examplesynology.com/webapi/entry.cgi?api=SYNO.Chat.External&method=incoming&version=x&token=x" required>
+		</div>
+		{{template "repo/settings/webhook/settings" .}}
+	</form>
+{{end}}

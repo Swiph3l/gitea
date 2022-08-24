@@ -29,6 +29,7 @@ All event pushes are POST requests. The methods currently supported are:
 - Feishu
 - Wechatwork
 - Packagist
+- Synology Chat
 
 ### Event information
 

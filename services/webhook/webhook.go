@@ -66,6 +66,10 @@ var webhooks = map[webhook_model.HookType]*webhook{
 		name:           webhook_model.PACKAGIST,
 		payloadCreator: GetPackagistPayload,
 	},
+	webhook_model.SYNOLOGYCHAT: {
+		name:           webhook_model.SYNOLOGYCHAT,
+		payloadCreator: GetSynologyChatPayload,
+	},
 }
 
 // RegisterWebhook registers a webhook

@@ -28,5 +28,6 @@ Gitea 的存储 webhook。这可以有存储库管路设定页 `/:username/:repo
 - Feishu
 - Wechatwork
 - Packagist
+- Synology Chat
 
 ## TBD

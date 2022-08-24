@@ -163,6 +163,7 @@ const (
 	MATRIX     HookType = "matrix"
 	WECHATWORK HookType = "wechatwork"
 	PACKAGIST  HookType = "packagist"
+	SYNOLOGYCHAT  HookType = "synologychat"
 )
 
 // HookStatus is the status of a web hook
